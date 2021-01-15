@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), CountryInterface.CountryView {
 
         button.setOnClickListener{
             cityName = edittext.text.toString()
-            presenter.networkCall(cityName)
+            presenter.onGetButtonTappedNetworkCall(cityName)
         }
     }
 

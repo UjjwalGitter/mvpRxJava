@@ -1,23 +1,23 @@
-package com.ujjwalsingh.mvpretrofit.model.repos
+package com.ujjwalsingh.mvpretrofit.model.remote
 
 import Country
 import android.util.Log
 import com.ujjwalsingh.mvpretrofit.`interface`.CountryInterface
 import com.ujjwalsingh.mvpretrofit.model.api.JobApi
 import com.ujjwalsingh.mvpretrofit.model.api.JobServices
+import com.ujjwalsingh.mvpretrofit.model.repos.CountryRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class CountryRepo: CountryInterface.CountryModel {
+class CountryRemote {
 
     private val disposal = CompositeDisposable()
-    private var country=""
+    private var country = ""
     private var apiClient : JobServices = JobApi.client.create(JobServices::class.java)
 
-    override fun getCountryNameByCapital(
-        city: String) {
+     fun getCountryNameByCapital(city: String) {
         disposal.add(
                 apiClient.getCountry(city).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,7 +34,7 @@ class CountryRepo: CountryInterface.CountryModel {
         )
     }
 
-    override fun getCountry(): String {
+     fun getCountry(): String {
         return country
     }
     

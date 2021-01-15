@@ -10,7 +10,7 @@ interface CountryInterface {
        fun updateViewData()
     }
     interface CountryPresenter{
-        fun networkCall(city:String)
+        fun onGetButtonTappedNetworkCall(city:String)
         fun showCountry():String
     }
 }
